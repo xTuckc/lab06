@@ -3,6 +3,7 @@ package selectcontract;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 class ContractController {
 
@@ -16,6 +17,7 @@ class ContractController {
         // this.theView.addBidListener(new BidButtonListener());
         this.theView.addNextListener(new NextButtonListener());
         this.theView.addComboBoxListener(new ComboListener());
+        this.theView.setOriginCityList(theModel.getOriginCityList());
         setUpDisplay();
     }
 
@@ -77,7 +79,7 @@ class ContractController {
         }
     }
     
-    class ComboListener implements ActionListener {
+    class ComboListener implements ItemListener {
 
         @Override
         public void itemStateChanged(ItemEvent e) {

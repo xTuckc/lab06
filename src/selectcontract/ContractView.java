@@ -2,6 +2,7 @@ package selectcontract;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -15,7 +16,7 @@ public class ContractView extends javax.swing.JFrame {
     }
     
     void addComboBoxListener(ItemListener listenForComboBox){
-            jComboOriginCity.addItemListener(listenForComboBox);
+        jComboOriginCity.addItemListener(listenForComboBox);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,15 +108,17 @@ public class ContractView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelContractID))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelOriginCity, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelContractID, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jPrevButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -134,20 +137,20 @@ public class ContractView extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabelContractID))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addGap(19, 19, 19)
                         .addComponent(jLabel5)
                         .addGap(65, 65, 65)
-                        .addComponent(jLabelContractCount)
-                        .addGap(30, 30, 30))
+                        .addComponent(jLabelContractCount))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabelContractID)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                        .addGap(6, 6, 6)
                         .addComponent(jLabelOriginCity)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelDestCity)
@@ -157,8 +160,8 @@ public class ContractView extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jPrevButton)
                             .addComponent(jNextButton)
-                            .addComponent(jBidButton))
-                        .addGap(51, 51, 51))))
+                            .addComponent(jBidButton))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,7 +182,7 @@ public class ContractView extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(70, 70, 70))
         );
 
         pack();
@@ -250,6 +253,11 @@ void setContractCount(String contractCount){
 
 void updateContractViewPanel(int currentContractNum, int contractCount){
     setContractCount((1+currentContractNum) + " of " + contractCount + " contracts");
+}
+
+void setOriginCityList(String[] cityList) {
+    final DefaultComboBoxModel model = new DefaultComboBoxModel(cityList);
+    this.jComboOriginCity.setModel(model);
 }
 
 }
