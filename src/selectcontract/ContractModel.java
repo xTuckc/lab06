@@ -4,16 +4,22 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 class ContractModel {
 
     private ArrayList<Contract> theContracts;
     private int contractCounter;
-
-    ContractModel() {
+    private ArrayList<Contract> theContractsAll;
+    private SortedSet<String> originCityList;
+    
+    public ContractModel() {
         contractCounter = 0;
         theContracts = new ArrayList<Contract>();
+        originCityList = new TreeSet<>();
         String filename = "C:\\Users\\tuckw\\OneDrive\\ICS_WINTER_2020\\ICS125\\SelectContract\\src\\selectcontract\\Contracts.txt";
+        
         try {
             FileReader fileReader = new FileReader(filename);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -33,13 +39,30 @@ class ContractModel {
                         destCity,
                         orderItem);
                 theContracts.add(dataContract);
+                originCityList.add(dataContract.getOriginCity());
             }
             fileReader.close();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+        originCityList.add("All");
+        theContractsAll = theContracts;
     }
-
+    
+    public String[] getOriginCityList() {
+        String[] a;
+        a = originCityList.toArray(new String[originCityList.size()]);
+        return a;
+    }
+    
+    public void updateContractList(String city){
+        theContracts = new ArrayList<>(theContractsAll);
+        if (city != "All") {
+            theContracts.removeIf(s -> !s.contains(city));
+        }
+        contractCounter = 0;
+    }
+    
     boolean foundContracts() {
         return theContracts.size() >= 1;
     }
